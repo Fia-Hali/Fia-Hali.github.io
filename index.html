@@ -14,15 +14,15 @@
             color: #333;
         }
         header {
-            background: #333;
-            color: #fff;
+            background: #c6d5db;
+            color: #333;
             padding: 1rem 0;
             text-align: center;
         }
         nav {
             margin: 0;
             padding: 1rem;
-            background: #444;
+            background: #686767;
             text-align: center;
         }
         nav a {
@@ -47,35 +47,105 @@
         }
     </style>
 </head>
+
+
 <body>
-    <header>
-        <h1>Welcome to My Page</h1>
-        <!-- <p>Your one-stop destination to learn more about me!</p> -->
-    </header>
-    <nav>
+    <nav style="position: fixed; top: 0; width: 100%; z-index: 1000;">
         <a href="#about">About Me</a>
         <a href="#projects">Projects</a>
-        <a href="#contact">Contact</a>
+        <a href="#Work">Work</a>
+        <a href="#more">More</a>
+        <a href="https://github.com/Fia-Hali" target="_blank">
+            <img src="images/githubicon1.png" alt="GitHub" style="width: 20px; height: 20px; vertical-align: middle;">
+        </a>
+        <a href="https://www.linkedin.com/in/hali001/" target="_blank">
+            <img src="images/linkedinicon1.png" alt="LinkedIn" style="width: 20px; height: 20px; vertical-align: middle;">
+        </a>
     </nav>
-    <section id="about">
-        <h2>About Me</h2>
-        <p>Hello! I'm [Your Name], a passionate [Your Profession/Interest]. I love creating, learning, and sharing knowledge with others.</p>
+    <header style="margin-top: 20px;">
+        <section id="x">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <div style="text-align: left; line-height: 1;">
+                    <h1 style="font-size: 2.5rem; margin-bottom: 0.5rem;">Hali Gulifeiya (Fia)</h1>
+                    <p style="font-size: 1.25rem; margin-bottom: 0.5rem;">B.S. of Computer Science @ <a href="https://www.stonybrook.edu/">Stony Brook University</a></p>
+                    <p style="font-size: 1.25rem; margin-bottom: 0.5rem;">Email: <a href="mailto:gulifeiya600220@gmail.com">gulifeiya600220@gmail.com</a></p>
+                    
+                    <!-- idk if i should add it -->
+                    <p style="font-size: 1rem; margin-bottom: 0.5rem;">
+                        Skills: Python, R, Java, C, Bash, JavaScript, SQL, HTML/CSS 
+                                Pandas, NumPy, Matplotlib, Seaborn, Power BI, Tableau
+                    </p>
+                
+                </div>
+                <div style="text-align: right;">
+                    <img src="images/profile.jpeg" alt="Hali Gulifeiya" style="border-radius: 70%; width: 300px; height: 300px;">
+                </div>
+        </section>
+    </header>
+
+
+        
+
+
+    <section id="about" style="text-align: left;">
+        <h1>About Me</h1>
+        <!-- about me -->
+        <p>Hello! I’m Hali (Fia) Gulifeiya, a recent Computer Science graduate from 
+            SUNY-Stony Brook University with a strong foundation in data analysis, 
+            machine learning, and software development. I’m skilled in Python, SQL, and R, 
+            with hands-on experience in data visualization tools like Power BI and Tableau, 
+            and cloud platforms like AWS and Google Cloud.</p>
+
     </section>
-    <section id="projects">
+    <section id="projects" style="text-align: left;">
         <h2>Projects</h2>
         <p>Here are some of the projects I've worked on:</p>
+        <ul>
+            <li><a href="#">Decentralized File Transfer System – OrcaCoin</a> 
+                Implemented a Proof-of-Work (PoW) mining system by modifying bcoin’s consensus 
+                logic and integrating OrcaCoin rewards, resulting in successful mining across test 
+                nodes and generation of 1,000+ OrcaCoin tokens in simulation.</li>
+
+            <li><a href="#">COVID-19 Data Analysis and Prediction Project</a>
+                Conducted an in-depth analysis of COVID-19 data from Germany, exploring 
+                death and recovery trends by state, county, gender, and age group.</li>
+
+            <li><a href="#">Online Movie Rental System</a>
+                Creating a user-friendly and highly intuitive web application for movie rentals by 
+                developing the front-end interface using HTML. 
+                Optimized data storage and retrieval processes in MySQL, improving query performance 
+                and system efficiency for a catalog of 1,000+ movie records.
+                </li>
+        </ul>
+    </section>
+    <section id="Work" style="text-align: left;">
+        <h2>Professional Experience</h2>
+        <ul>
+            <li><a href="#">Software Developer Boot Camp Lecturer</a> 
+                Designed and developed 4 Object-Oriented Programming (OOP) 
+                in-class to introduce students to advanced OOP concepts such as interfaces, 
+                libraries, classes, inheritance, and modular functions..</li>
+
+            <li><a href="#">Data Scientist Intern</a> 
+                Developed a custom Python-Pandas interface for automating data
+                 preprocessing within bacterial genomics research. The interface enhanced 
+                 data transformation by sorting, extracting, and merging over 3,000 records across
+                  4 taxonomy levels, improving processing efficiency by 20%.</li>
+        </ul>
+    </section>
+
+    <section id="More" style="text-align: left;">
+        <h2>A little bit more of my life</h2>
         <ul>
             <li><a href="#">Project 1</a> - A brief description of your project.</li>
             <li><a href="#">Project 2</a> - A brief description of your project.</li>
             <li><a href="#">Project 3</a> - A brief description of your project.</li>
         </ul>
     </section>
-    <section id="contact">
-        <h2>Contact</h2>
-        <p>Feel free to reach out to me at <a href="mailto:your-email@example.com">your-email@example.com</a>.</p>
-    </section>
+
+
     <footer>
-        <p>&copy; 2023 [Your Name]. All rights reserved.</p>
+        <p>&copy; 2025 Hali Gulifeiya. All rights reserved.</p>
     </footer>
 </body>
 </html>

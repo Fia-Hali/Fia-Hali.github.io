@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,53 +11,63 @@
             margin: 0;
             padding: 0;
             background-color: #f4f4f4;
-            color: #333;
+            color: #454545;
         }
+
         header {
-            background: #c6d5db;
+            background: #d4ebe7;
             color: #333;
             padding: 1rem 0;
             text-align: center;
         }
+
         main {
             padding: 2rem;
             max-width: 800px;
             margin: 0 auto;
         }
+
         nav {
             margin: 0;
             padding: 1rem;
-            background: #686767;
+            background: #c3d3dc;
             text-align: center;
         }
+
         nav a {
-            color: #fff;
+            color: #333;
             text-decoration: none;
             margin: 0 1rem;
         }
+
         nav a:hover {
             text-decoration: underline;
         }
+
         section {
-            margin-bottom: 2rem;
-        }
-        h1, h2 {
-            color: #333;
+            padding: 2rem;
+            max-width: 800px;
+            margin: auto;
         }
         footer {
             text-align: center;
             padding: 1rem 0;
-            background-color: #333;
-            color: white;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
+            background: #c3d3dc;
+            color: #333;
+            margin-top: 2rem;
         }
-        body, header, main, nav, section, footer {
+
+        body,
+        header,
+        main,
+        nav,
+        section,
+        footer {
             font-family: "Times New Roman", Times, serif;
         }
     </style>
 </head>
+
 <body>
     <nav style="position: fixed; top: 0; width: 100%; z-index: 1000;">
         <a href="index.html">Home</a>
@@ -68,34 +79,98 @@
             <img src="images/githubicon1.png" alt="GitHub" style="width: 20px; height: 20px; vertical-align: middle;">
         </a>
         <a href="https://www.linkedin.com/in/hali001/" target="_blank">
-            <img src="images/linkedinicon1.png" alt="LinkedIn" style="width: 20px; height: 20px; vertical-align: middle;">
+            <img src="images/linkedinicon1.png" alt="LinkedIn"
+                style="width: 20px; height: 20px; vertical-align: middle;">
         </a>
     </nav>
 
     <header style="margin-top: 30px;">
         <h1>A little bit more of my life</h1>
+        <div>
+            <button id="themeToggle"
+                style="padding: 0.5rem 1rem; margin-right: 1rem; background-color: #474747; color: white; border: none; border-radius: 5px; cursor: pointer;">
+                Dark/light Mode
+            </button>
+        </div>
+        <script>
+            const themeToggle = document.getElementById('themeToggle');
+            themeToggle.addEventListener('click', () => {
+                document.body.classList.toggle('dark-mode');
+            });
+
+            // Add dark mode styles
+            const style = document.createElement('style');
+            style.textContent = `
+            .dark-mode {
+            background-color: #333;
+            color: #f4f4f4;
+            }
+            .dark-mode nav {
+            background: #444;
+            }
+            .dark-mode nav a {
+            color: #bbb;
+            }
+            .dark-mode header {
+            background: #555;
+            color: #f4f4f4;
+            }
+            .dark-mode footer {
+            background: #222;
+            color: #bbb;
+            }
+            `;
+            document.head.appendChild(style);
+        </script>
     </header>
-    <main>
-        <section>
-            <h2>Professional Interpreter</h2>
-            <p>...</p>
-        </section>
-        <section>
-            <h2>Artist</h2>
-            <p>...</p>
-        </section>
-        <section>
-            <h2>Hobbies</h2>
-            <ul>
-                <li>Reading</li>
-                <li>Coding</li>
-                <li>Traveling</li>
-                <li>Photography</li>
-            </ul>
-        </section>
-    </main>
+
+
+    <section style="margin: 0 auto; max-width: 600px; text-align: left; padding-bottom: 20px;">
+        <h2>Artist</h2>
+        <p>I paint sometimes:) I'm a self-taught artist and I love using art as a way to express ideas, 
+            emotions, and moments that matter to me.</p>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px;">
+            <img src="images/art1.jpeg" alt="tree" style="width: 100%; height: auto; border-radius: 5px;">
+            <img src="images/art2.jpeg" alt="oreo" style="width: 100%; height: auto; border-radius: 5px;">
+            <img src="images/art3.jpeg" alt="flower" style="width: 100%; height: auto; border-radius: 5px;">
+        </div>
+    </section>
+
+    <section style="margin: 0 auto; max-width: 600px; text-align: left; ">
+        <h2>Professional Interpreter</h2>
+        <div style="display: flex; align-items: center; margin-bottom: 1rem;">
+            <p>I had experience as a professional Mandarin interpreter at LanguageLine Solutions, I deliver clear, accurate, and
+                culturally sensitive communication across different industries including healthcare, legal, and technical
+                services. <br><br>This requires quick thinking, confidentiality, and a deep understanding of both language and
+                culture.</p> 
+            <img src="images/lls1.jpg" alt="language line solution" style="width: 250px; height: 200px; margin-left: 10px;">
+    </section>
+
+    <section style="margin: 0 auto; max-width: 600px; text-align: left; ">
+        <h2>Boba tea barista</h2>
+        <div style="display: flex; align-items: center; margin-bottom: 1rem;">
+            <img src="images/gongcha.jpg" alt="language line solution" style="width: 250px; height: 200px; margin-left: 10px; margin-right: 1rem;">
+
+            <p>I worked as a bobatea barista at Gong Cha, where I made a lot of good friendship while learning all kinds of bubble tea drinks and recipes. 
+                I loved getting to know regulars and creating a fun, friendly vibe behind the counter. It was all
+                about great customer service, teamwork, and making sure everyone left with a smile (and their favorite drink).</p>
+    </section>
+
+    <section style="margin: 0 auto; max-width: 600px; text-align: left;">
+        <h2>My cat and dog</h2>
+        <h3>Dog: Saldat (M) Cat: Oreo (F)</h3>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px;">
+            <img src="images/saldathead.jpeg" alt="saldat" style="width: 100%; height: auto; border-radius: 5px;">
+            <img src="images/huntingoreo.jpeg" alt="Oreo playing" style="width: 100%; height: auto; border-radius: 5px;">
+            <img src="images/madoreo.jpeg" alt="Oreo mad" style="width: 100%; height: auto; border-radius: 5px;">
+            <img src="images/saldat.jpeg" alt="saldat full" style="width: 100%; height: auto; border-radius: 5px;">
+            <img src="images/judgingoreo.jpeg" alt="saldat full" style="width: 100%; height: auto; border-radius: 5px;">
+        </div>
+    </section>
+
     <footer>
         <p>&copy; 2025 Hali Gulifeiya. All rights reserved.</p>
     </footer>
 </body>
+
 </html>

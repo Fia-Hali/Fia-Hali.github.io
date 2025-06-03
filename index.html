@@ -11,7 +11,7 @@
             padding: 0;
             line-height: 1.6;
             background-color: #f4f4f4;
-            color: #333;
+            color: #454545;
         }
         header {
             background: #d4ebe7;
@@ -22,11 +22,11 @@
         nav {
             margin: 0;
             padding: 1rem;
-            background: #686767;
+            background: #c3d3dc;
             text-align: center;
         }
         nav a {
-            color: #fff;
+            color: #333;
             text-decoration: none;
             margin: 0 1rem;
         }
@@ -41,8 +41,8 @@
         footer {
             text-align: center;
             padding: 1rem 0;
-            background: #333;
-            color: #fff;
+            background: #c3d3dc;
+            color: #333;
             margin-top: 2rem;
         }
         body, header, main, nav, section, footer {
@@ -86,15 +86,7 @@
                 </div>
         </section>
 
-        <section><div style="margin-top: 1rem;">
-            <button onclick="window.open('resume.pdf', '_blank')" style="padding: 0.5rem 1rem; margin-right: 1rem; background-color: #c8a392; color: white; border: none; border-radius: 5px; cursor: pointer;">
-            View Resume
-            </button>
-            <button onclick="window.open('cv.pdf', '_blank')" style="padding: 0.5rem 1rem; background-color: #77b1c4; color: white; border: none; border-radius: 5px; cursor: pointer;">
-            View CV
-            </button>
-            </div>
-        </section>
+
         
 
 
@@ -102,7 +94,48 @@
 
 
         
+    <section><div style="margin-top: 1rem;">
+        <button onclick="window.open('resume.pdf', '_blank')" style="padding: 0.5rem 1rem; margin-right: 1rem; background-color: #c8a392; color: white; border: none; border-radius: 5px; cursor: pointer;">
+        View Resume
+        </button>
+        <button onclick="window.open('cv.pdf', '_blank')" style="padding: 0.5rem 1rem; margin-right: 1rem; background-color: #77b1c4; color: white; border: none; border-radius: 5px; cursor: pointer;">
+        View CV
+        </button>
+        <button id="themeToggle" style="padding: 0.5rem 1rem; margin-right: 1rem; background-color: #474747; color: white; border: none; border-radius: 5px; cursor: pointer;">
+            Dark/light Mode
+        </button>
+        </div>
+        <script>
+            const themeToggle = document.getElementById('themeToggle');
+            themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            });
 
+            // Add dark mode styles
+            const style = document.createElement('style');
+            style.textContent = `
+            .dark-mode {
+                background-color: #333;
+                color: #f4f4f4;
+            }
+            .dark-mode nav {
+                background: #444;
+            }
+            .dark-mode nav a {
+                color: #bbb;
+            }
+            .dark-mode header {
+                background: #555;
+                color: #f4f4f4;
+            }
+            .dark-mode footer {
+                background: #222;
+                color: #bbb;
+            }
+            `;
+            document.head.appendChild(style);
+        </script>
+    </section>
 
     <section id="about" style="text-align: left;">
         <h1>About Me</h1>
@@ -123,16 +156,26 @@
         <h2>Projects</h2>
         <h3>Here are some of the projects I've worked on:</h3>
         <ul>
-            <li><a href="#">Decentralized File Transfer System – OrcaCoin</a> 
-                Implemented a Proof-of-Work (PoW) mining system by modifying bcoin’s consensus 
-                logic and integrating OrcaCoin rewards, resulting in successful mining across test 
-                nodes and generation of 1,000+ OrcaCoin tokens in simulation.</li>
+            <div style="display: flex; align-items: center; margin-bottom: 1rem;">
+                <li style="flex: 1;">
+                    <a href="https://github.com/sbu-416-24sp" style="color: #bb6f6e;">Decentralized File Transfer System – OrcaCoin</a> 
+                    Implemented a Proof-of-Work (PoW) mining system by modifying bcoin’s consensus 
+                    logic and integrating OrcaCoin rewards, resulting in successful mining across test 
+                    nodes and generation of 1,000+ OrcaCoin tokens in simulation.
+                </li>
+                <img src="images/dec.png" alt="OrcaCoin Project" style="width: 350px; height: 200px; margin-left: 10px;">
+            </div>
 
-            <li><a href="#">COVID-19 Data Analysis and Prediction Project</a>
+
+            <div style="display: flex; align-items: center; margin-bottom: 1rem;">
+                <img src="images/covid.png" alt="Covid Project" style="width: 350px; height: 200px; margin-left: 10px; margin-right: 1rem;">
+
+                <li><a href="https://colab.research.google.com/drive/17-bibgxsKYLKMAeAUAqwADJ_72jPlJOU#scrollTo=hOsU_ij4QbRu" style="color: #bb6f6e;">COVID-19 Data Analysis and Prediction Project</a>
                 Conducted an in-depth analysis of COVID-19 data from Germany, exploring 
                 death and recovery trends by state, county, gender, and age group.</li>
-
-            <li><a href="#">Online Movie Rental System</a>
+            </div>
+            
+            <li><a href="https://github.com/Fia-Hali/FAR-Movie-Rental" style="color: #bb6f6e;">Online Movie Rental System</a>
                 Creating a user-friendly and highly intuitive web application for movie rentals by 
                 developing the front-end interface using HTML. 
                 Optimized data storage and retrieval processes in MySQL, improving query performance 
@@ -143,17 +186,25 @@
     <section id="Work" style="text-align: left;">
         <h2>Professional Experience</h2>
         <ul>
-            <li><a href="#">Software Developer Boot Camp Lecturer</a> 
+            <dev style="display: flex; align-items: center; margin-bottom: 1rem;"> 
+                <li><strong>Software Developer Boot Camp Lecturer</strong> 
                 Designed and developed 4 Object-Oriented Programming (OOP) 
                 in-class to introduce students to advanced OOP concepts such as interfaces, 
                 libraries, classes, inheritance, and modular functions..</li>
+                <img src="images/lavner.jpg" alt="Lavner education" style="width: 350px; height: 200px; margin-left: 10px; margin-right: 1rem;">
 
-            <li><a href="#">Data Scientist Intern</a> 
+            </dev>
+            
+            <dev style="display: flex; align-items: center; margin-bottom: 1rem;">
+                <img src="images/baylor.jpg" alt="BCM Houston" style="width: 350px; height: 200px; margin-left: 10px; margin-right: 1rem;">
+
+                <li><strong>Data Scientist Intern</strong> 
                 Developed a custom Python-Pandas interface for automating data
                  preprocessing within bacterial genomics research. The interface enhanced 
                  data transformation by sorting, extracting, and merging over 3,000 records across
                   4 taxonomy levels, improving processing efficiency by 20%.</li>
-        </ul>
+        </dev>
+            </ul>
     </section>
 
     <footer>

@@ -14,7 +14,7 @@
             color: #333;
         }
         header {
-            background: #c6d5db;
+            background: #d4ebe7;
             color: #333;
             padding: 1rem 0;
             text-align: center;
@@ -45,6 +45,9 @@
             color: #fff;
             margin-top: 2rem;
         }
+        body, header, main, nav, section, footer {
+            font-family: "Times New Roman", Times, serif;
+        }
     </style>
 </head>
 
@@ -68,8 +71,8 @@
             <div style="display: flex; justify-content: space-between; align-items: center;">
                 <div style="text-align: left; line-height: 1;">
                     <h1 style="font-size: 2.5rem; margin-bottom: 0.5rem;">Hali Gulifeiya (Fia)</h1>
-                    <p style="font-size: 1.25rem; margin-bottom: 0.5rem;">B.S. of Computer Science @ <a href="https://www.stonybrook.edu/">Stony Brook University</a></p>
-                    <p style="font-size: 1.25rem; margin-bottom: 0.5rem;">Email: <a href="mailto:gulifeiya600220@gmail.com">gulifeiya600220@gmail.com</a></p>
+                    <p style="font-size: 1.25rem; margin-bottom: 0.5rem;">B.S. of Computer Science @ <a href="https://www.stonybrook.edu/" style="color: #bb6f6e;">Stony Brook University</a></p>
+                    <p style="font-size: 1.25rem; margin-bottom: 0.5rem;">Email: <a href="mailto:gulifeiya600220@gmail.com" style="color: #bb6f6e;">gulifeiya600220@gmail.com</a></p>
                     
                     <!-- idk if i should add it -->
                     <p style="font-size: 1rem; margin-bottom: 0.5rem;">
@@ -82,6 +85,19 @@
                     <img src="images/profile.jpeg" alt="Hali Gulifeiya" style="border-radius: 70%; width: 300px; height: 300px;">
                 </div>
         </section>
+
+        <section><div style="margin-top: 1rem;">
+            <button onclick="window.open('resume.pdf', '_blank')" style="padding: 0.5rem 1rem; margin-right: 1rem; background-color: #c8a392; color: white; border: none; border-radius: 5px; cursor: pointer;">
+            View Resume
+            </button>
+            <button onclick="window.open('cv.pdf', '_blank')" style="padding: 0.5rem 1rem; background-color: #77b1c4; color: white; border: none; border-radius: 5px; cursor: pointer;">
+            View CV
+            </button>
+            </div>
+        </section>
+        
+
+
     </header>
 
 
@@ -92,15 +108,20 @@
         <h1>About Me</h1>
         <!-- about me -->
         <p>Hello! I’m Hali (Fia) Gulifeiya, a recent Computer Science graduate from 
-            SUNY-Stony Brook University with a strong foundation in data analysis, 
-            machine learning, and software development. I’m skilled in Python, SQL, and R, 
+            <strong>SUNY-Stony Brook University</strong> with a strong foundation in <strong>data analysis, 
+            machine learning, and software development.</strong> I’m skilled in Python, SQL, and R, 
             with hands-on experience in data visualization tools like Power BI and Tableau, 
             and cloud platforms like AWS and Google Cloud.</p>
 
+        <p><strong>My research interest</strong> lies in the intersection of <strong>big data and machine learning</strong>, 
+            particularly in developing innovative solutions to complex problems. I have a keen interest 
+            in exploring how data-driven insights can enhance decision-making processes across various domains.</p>
+        </p>  
+        
     </section>
     <section id="projects" style="text-align: left;">
         <h2>Projects</h2>
-        <p>Here are some of the projects I've worked on:</p>
+        <h3>Here are some of the projects I've worked on:</h3>
         <ul>
             <li><a href="#">Decentralized File Transfer System – OrcaCoin</a> 
                 Implemented a Proof-of-Work (PoW) mining system by modifying bcoin’s consensus 

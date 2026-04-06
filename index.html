@@ -1,242 +1,604 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hali Gulifeiya</title>
+    <title>Hali Gulifeiya (Fia) — Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
     <style>
+        /* ── Design Tokens ── */
+        :root {
+            --bg:          #f7f5f2;
+            --surface:     #ffffff;
+            --surface-alt: #f0ede8;
+            --border:      #e2ddd8;
+            --text:        #2c2c2c;
+            --text-muted:  #6b6560;
+            --primary:     #3d7a72;
+            --primary-light: #d4ebe7;
+            --accent:      #c97d6e;
+            --accent-light: #f5e6e3;
+            --nav-bg:      rgba(247, 245, 242, 0.85);
+            --shadow:      0 2px 16px rgba(0,0,0,0.07);
+            --shadow-hover:0 6px 24px rgba(0,0,0,0.12);
+            --radius:      12px;
+            --radius-sm:   8px;
+            --transition:  0.2s ease;
+        }
+
+        [data-theme="dark"] {
+            --bg:          #141918;
+            --surface:     #1e2623;
+            --surface-alt: #262e2b;
+            --border:      #2e3834;
+            --text:        #e8e4df;
+            --text-muted:  #8a9490;
+            --primary:     #5aa89e;
+            --primary-light: #1e3330;
+            --accent:      #d4917f;
+            --accent-light: #2e201e;
+            --nav-bg:      rgba(20, 25, 24, 0.88);
+            --shadow:      0 2px 16px rgba(0,0,0,0.3);
+            --shadow-hover:0 6px 24px rgba(0,0,0,0.45);
+        }
+
+        /* ── Reset & Base ── */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        html { scroll-behavior: smooth; }
+
         body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            line-height: 1.6;
-            background-color: #f4f4f4;
-            color: #454545;
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.65;
+            transition: background var(--transition), color var(--transition);
         }
 
-        header {
-            background: #d4ebe7;
-            color: #333;
-            padding: 1rem 0;
-            text-align: center;
-        }
+        a { color: var(--accent); text-decoration: none; }
+        a:hover { text-decoration: underline; }
 
+        img { display: block; max-width: 100%; }
+
+        /* ── Nav ── */
         nav {
-            margin: 0;
-            padding: 1rem;
-            background: #c3d3dc;
-            text-align: center;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            background: var(--nav-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            padding: 0 2rem;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: background var(--transition);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
         }
 
         nav a {
-            color: #333;
-            text-decoration: none;
-            margin: 0 1rem;
+            color: var(--text-muted);
+            font-size: 0.875rem;
+            font-weight: 500;
+            padding: 0.4rem 0.75rem;
+            border-radius: var(--radius-sm);
+            transition: color var(--transition), background var(--transition);
         }
 
         nav a:hover {
-            text-decoration: underline;
+            color: var(--primary);
+            background: var(--primary-light);
+            text-decoration: none;
         }
 
-        section {
-            padding: 2rem;
-            max-width: 800px;
-            margin: auto;
+        .nav-icons {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
+        .nav-icons a {
+            display: flex;
+            align-items: center;
+            padding: 0.4rem;
+            border-radius: var(--radius-sm);
+        }
+
+        .nav-icons img {
+            width: 20px;
+            height: 20px;
+            filter: var(--icon-filter, none);
+            transition: opacity var(--transition);
+        }
+
+        [data-theme="dark"] .nav-icons img { filter: invert(1) brightness(0.75); }
+
+        /* ── Theme Toggle ── */
+        .theme-btn {
+            background: var(--surface-alt);
+            border: 1px solid var(--border);
+            color: var(--text-muted);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 500;
+            padding: 0.35rem 0.8rem;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all var(--transition);
+            white-space: nowrap;
+        }
+
+        .theme-btn:hover {
+            background: var(--primary-light);
+            color: var(--primary);
+            border-color: var(--primary);
+        }
+
+        /* ── Hero ── */
+        .hero {
+            padding: 6rem 2rem 3rem;
+            max-width: 900px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+        }
+
+        .hero-text { flex: 1; }
+
+        .hero-eyebrow {
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--primary);
+            margin-bottom: 0.75rem;
+        }
+
+        .hero-name {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 600;
+            line-height: 1.2;
+            color: var(--text);
+            margin-bottom: 0.75rem;
+        }
+
+        .hero-subtitle {
+            font-size: 1rem;
+            color: var(--text-muted);
+            margin-bottom: 0.4rem;
+        }
+
+        .hero-subtitle a { color: var(--accent); }
+
+        .hero-email {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-email a { color: var(--text-muted); }
+        .hero-email a:hover { color: var(--accent); }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+            margin-bottom: 1.75rem;
+        }
+
+        .tag {
+            font-size: 0.75rem;
+            font-weight: 500;
+            padding: 0.25rem 0.65rem;
+            border-radius: 20px;
+            background: var(--surface-alt);
+            color: var(--text-muted);
+            border: 1px solid var(--border);
+        }
+
+        .tag.primary {
+            background: var(--primary-light);
+            color: var(--primary);
+            border-color: transparent;
+        }
+
+        .cta-row {
+            display: flex;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.875rem;
+            font-weight: 500;
+            padding: 0.6rem 1.25rem;
+            border-radius: var(--radius-sm);
+            border: none;
+            cursor: pointer;
+            transition: all var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: #fff;
+        }
+
+        .btn-primary:hover {
+            background: #b86b5c;
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .btn-secondary {
+            background: var(--surface);
+            color: var(--primary);
+            border: 1.5px solid var(--primary);
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary-light);
+            transform: translateY(-1px);
+        }
+
+        .hero-img-wrap {
+            flex-shrink: 0;
+        }
+
+        .hero-img-wrap img {
+            width: 240px;
+            height: 240px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 4px solid var(--primary-light);
+            box-shadow: var(--shadow);
+        }
+
+        /* ── Sections ── */
+        .section {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        .section + .section { border-top: 1px solid var(--border); }
+
+        .section-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.75rem;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 1.25rem;
+        }
+
+        .section-body {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            max-width: 680px;
+        }
+
+        .section-body p + p { margin-top: 0.85rem; }
+        .section-body strong { color: var(--text); }
+
+        /* ── Cards ── */
+        .card-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+            margin-top: 1.5rem;
+        }
+
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            display: flex;
+            gap: 1.5rem;
+            align-items: flex-start;
+            box-shadow: var(--shadow);
+            transition: transform var(--transition), box-shadow var(--transition);
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .card-img {
+            width: 180px;
+            height: 120px;
+            object-fit: cover;
+            border-radius: var(--radius-sm);
+            flex-shrink: 0;
+        }
+
+        .card-content { flex: 1; }
+
+        .card-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 0.4rem;
+        }
+
+        .card-title a {
+            color: var(--text);
+        }
+
+        .card-title a:hover {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        .card-body {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        /* ── Divider ── */
+        .divider {
+            border: none;
+            border-top: 1px solid var(--border);
+            margin: 0;
+        }
+
+        /* ── Footer ── */
         footer {
             text-align: center;
-            padding: 1rem 0;
-            background: #c3d3dc;
-            color: #333;
+            padding: 2rem;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            border-top: 1px solid var(--border);
             margin-top: 2rem;
         }
 
-        body,
-        header,
-        main,
-        nav,
-        section,
-        footer {
-            font-family: "Times New Roman", Times, serif;
+        /* ── Responsive ── */
+        @media (max-width: 650px) {
+            .hero { flex-direction: column-reverse; gap: 1.5rem; padding-top: 5rem; }
+            .hero-img-wrap img { width: 160px; height: 160px; }
+            .card { flex-direction: column; }
+            .card-img { width: 100%; height: 180px; }
+            nav { padding: 0 1rem; }
+            .nav-links a { padding: 0.4rem 0.5rem; font-size: 0.8rem; }
         }
     </style>
 </head>
 
-
 <body>
-    <nav style="position: fixed; top: 0; width: 100%; z-index: 1000;">
-        <a href="index.html">Home</a>
-        <a href="#about">About Me</a>
-        <a href="#projects">Projects</a>
-        <a href="#Work">Work</a>
-        <a href="more.html">More</a>
-        <a href="https://github.com/Fia-Hali" target="_blank">
-            <img src="images/githubicon1.png" alt="GitHub" style="width: 20px; height: 20px; vertical-align: middle;">
-        </a>
-        <a href="https://www.linkedin.com/in/hali001/" target="_blank">
-            <img src="images/linkedinicon1.png" alt="LinkedIn"
-                style="width: 20px; height: 20px; vertical-align: middle;">
-        </a>
+
+    <!-- ── Navigation ── -->
+    <nav>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="#about">About</a>
+            <a href="#projects">Projects</a>
+            <a href="#work">Experience</a>
+            <a href="more.html">More</a>
+        </div>
+        <div style="display:flex; align-items:center; gap:0.75rem;">
+            <div class="nav-icons">
+                <a href="https://github.com/Fia-Hali" target="_blank" aria-label="GitHub">
+                    <img src="images/githubicon1.png" alt="GitHub">
+                </a>
+                <a href="https://www.linkedin.com/in/hali001/" target="_blank" aria-label="LinkedIn">
+                    <img src="images/linkedinicon1.png" alt="LinkedIn">
+                </a>
+            </div>
+            <button class="theme-btn" id="themeToggle" aria-label="Toggle theme">☀ Light</button>
+        </div>
     </nav>
-    <header style="margin-top: 20px;">
-        <section id="x">
-            <div style="display: flex; justify-content: space-between; align-items: center;">
-                <div style="text-align: left; line-height: 1;">
-                    <h1 style="font-size: 2.5rem; margin-bottom: 0.5rem;">Hali Gulifeiya (Fia)</h1>
-                    <p style="font-size: 1.25rem; margin-bottom: 0.5rem;">B.S. of Computer Science @ <a
-                            href="https://www.stonybrook.edu/" style="color: #bb6f6e;">Stony Brook University</a></p>
-                    <p style="font-size: 1.25rem; margin-bottom: 0.5rem;">Email: <a
-                            href="mailto:gulifeiya600220@gmail.com"
-                            style="color: #bb6f6e;">gulifeiya600220@gmail.com</a></p>
 
-                    <!-- idk if i should add it -->
-                    <p style="font-size: 1rem; margin-bottom: 0.5rem;">
-                        Skills: Python, R, Java, C, Bash, JavaScript, SQL, HTML/CSS
-                        Pandas, NumPy, Matplotlib, Seaborn, Power BI, Tableau
-                    </p>
+    <!-- ── Hero ── -->
+    <header>
+        <div class="hero">
+            <div class="hero-text">
+                <p class="hero-eyebrow">Portfolio</p>
+                <h1 class="hero-name">Hali Gulifeiya<br><span style="color:var(--accent)">(Fia)</span></h1>
+                <p class="hero-subtitle">B.S. Computer Science &nbsp;·&nbsp; <a href="https://www.stonybrook.edu/">Stony Brook University</a></p>
+                <p class="hero-email"><a href="mailto:gulifeiya600220@gmail.com">gulifeiya600220@gmail.com</a></p>
 
+                <div class="skill-tags">
+                    <span class="tag primary">Python</span>
+                    <span class="tag primary">SQL</span>
+                    <span class="tag primary">R</span>
+                    <span class="tag">Java</span>
+                    <span class="tag">C</span>
+                    <span class="tag">JavaScript</span>
+                    <span class="tag">Bash</span>
+                    <span class="tag">HTML/CSS</span>
+                    <span class="tag">Pandas</span>
+                    <span class="tag">NumPy</span>
+                    <span class="tag">Matplotlib</span>
+                    <span class="tag">Power BI</span>
+                    <span class="tag">Tableau</span>
+                    <span class="tag">AWS</span>
+                    <span class="tag">Google Cloud</span>
                 </div>
-                <div style="text-align: right;">
-                    <img src="images/profile.jpeg" alt="Hali Gulifeiya"
-                        style="border-radius: 70%; width: 300px; height: 300px;">
-                </div>
-        </section>
 
+                <div class="cta-row">
+                    <button class="btn btn-primary" onclick="window.open('resume.pdf','_blank')">View Resume</button>
+                    <button class="btn btn-secondary" onclick="window.open('cv.pdf','_blank')">View CV</button>
+                </div>
+            </div>
+
+            <div class="hero-img-wrap">
+                <img src="images/profile.jpeg" alt="Hali Gulifeiya">
+            </div>
+        </div>
     </header>
 
+    <hr class="divider">
 
-
-    <section>
-        <div style="margin-top: 1rem;">
-            <button onclick="window.open('resume.pdf', '_blank')"
-                style="padding: 0.5rem 1rem; margin-right: 1rem; background-color: #c8a392; color: white; border: none; border-radius: 5px; cursor: pointer;">
-                View Resume
-            </button>
-            <button onclick="window.open('cv.pdf', '_blank')"
-                style="padding: 0.5rem 1rem; margin-right: 1rem; background-color: #77b1c4; color: white; border: none; border-radius: 5px; cursor: pointer;">
-                View CV
-            </button>
-            <button id="themeToggle"
-                style="padding: 0.5rem 1rem; margin-right: 1rem; background-color: #474747; color: white; border: none; border-radius: 5px; cursor: pointer;">
-                Dark/light Mode
-            </button>
+    <!-- ── About ── -->
+    <section id="about" class="section">
+        <p class="section-label">Background</p>
+        <h2 class="section-title">About Me</h2>
+        <div class="section-body">
+            <p>Hello! I'm Hali (Fia) Gulifeiya, a recent Computer Science graduate from
+                <strong>SUNY Stony Brook University</strong> with a strong foundation in
+                <strong>data analysis, machine learning, and software development.</strong>
+                I'm skilled in Python, SQL, and R, with hands-on experience in data visualization tools
+                like Power BI and Tableau, and cloud platforms like AWS and Google Cloud.
+            </p>
+            <p><strong>My research interest</strong> lies in the intersection of
+                <strong>big data and machine learning</strong>, particularly in developing innovative
+                solutions to complex problems. I have a keen interest in exploring how data-driven
+                insights can enhance decision-making across various domains.
+            </p>
         </div>
-        <script>
-            const themeToggle = document.getElementById('themeToggle');
-            themeToggle.addEventListener('click', () => {
-                document.body.classList.toggle('dark-mode');
-            });
-
-            // Add dark mode styles
-            const style = document.createElement('style');
-            style.textContent = `
-            .dark-mode {
-                background-color: #333;
-                color: #f4f4f4;
-            }
-            .dark-mode nav {
-                background: #444;
-            }
-            .dark-mode nav a {
-                color: #bbb;
-            }
-            .dark-mode header {
-                background: #555;
-                color: #f4f4f4;
-            }
-            .dark-mode footer {
-                background: #222;
-                color: #bbb;
-            }
-            `;
-            document.head.appendChild(style);
-        </script>
     </section>
 
-    <section id="about" style="text-align: left;">
-        <h1>About Me</h1>
-        <!-- about me -->
-        <p>Hello! I’m Hali (Fia) Gulifeiya, a recent Computer Science graduate from
-            <strong>SUNY-Stony Brook University</strong> with a strong foundation in <strong>data analysis,
-                machine learning, and software development.</strong> I’m skilled in Python, SQL, and R,
-            with hands-on experience in data visualization tools like Power BI and Tableau,
-            and cloud platforms like AWS and Google Cloud.
-        </p>
+    <hr class="divider">
 
-        <p><strong>My research interest</strong> lies in the intersection of <strong>big data and machine
-                learning</strong>,
-            particularly in developing innovative solutions to complex problems. I have a keen interest
-            in exploring how data-driven insights can enhance decision-making processes across various domains.</p>
-        </p>
+    <!-- ── Projects ── -->
+    <section id="projects" class="section">
+        <p class="section-label">Work</p>
+        <h2 class="section-title">Projects</h2>
 
-    </section>
-    <section id="projects" style="text-align: left;">
-        <h2>Projects</h2>
-        <h3>Here are some of the projects I've worked on:</h3>
-        <ul>
-            <div style="display: flex; align-items: center; margin-bottom: 1rem;">
-                <li style="flex: 1;">
-                    <a href="https://github.com/sbu-416-24sp" style="color: #bb6f6e;">Decentralized File Transfer System
-                        – OrcaCoin</a>
-                    Implemented a Proof-of-Work (PoW) mining system by modifying bcoin’s consensus
-                    logic and integrating OrcaCoin rewards, resulting in successful mining across test
-                    nodes and generation of 1,000+ OrcaCoin tokens in simulation.
-                </li>
-                <img src="images/dec.png" alt="OrcaCoin Project"
-                    style="width: 350px; height: 200px; margin-left: 10px;">
+        <div class="card-grid">
+
+            <div class="card">
+                <img class="card-img" src="images/fitness-calc.png" alt="Fitness Calculators">
+                <div class="card-content">
+                    <p class="card-title">
+                        <a href="https://github.com/Fia-Hali/fitness-calculators" target="_blank">Fitness Calculators</a>
+                    </p>
+                    <p class="card-body">
+                        A browser-based fitness toolkit with calculators for Calorie Deficit, TDEE
+                        (Total Daily Energy Expenditure), Macro Split, and Protein Intake.
+                        Built with HTML, CSS, and JavaScript — no sign-up required.
+                    </p>
+                </div>
             </div>
 
-
-            <div style="display: flex; align-items: center; margin-bottom: 1rem;">
-                <img src="images/covid.png" alt="Covid Project"
-                    style="width: 350px; height: 200px; margin-left: 10px; margin-right: 1rem;">
-
-                <li><a href="https://colab.research.google.com/drive/17-bibgxsKYLKMAeAUAqwADJ_72jPlJOU#scrollTo=hOsU_ij4QbRu"
-                        style="color: #bb6f6e;">COVID-19 Data Analysis and Prediction Project</a>
-                    Conducted an in-depth analysis of COVID-19 data from Germany, exploring
-                    death and recovery trends by state, county, gender, and age group.</li>
+            <div class="card">
+                <img class="card-img" src="images/dec.png" alt="OrcaCoin Project">
+                <div class="card-content">
+                    <p class="card-title">
+                        <a href="https://github.com/sbu-416-24sp" target="_blank">Decentralized File Transfer System — OrcaCoin</a>
+                    </p>
+                    <p class="card-body">
+                        Implemented a Proof-of-Work (PoW) mining system by modifying bcoin's consensus logic
+                        and integrating OrcaCoin rewards, resulting in successful mining across test nodes
+                        and generation of 1,000+ OrcaCoin tokens in simulation.
+                    </p>
+                </div>
             </div>
 
-            <li><a href="https://github.com/Fia-Hali/FAR-Movie-Rental" style="color: #bb6f6e;">Online Movie Rental
-                    System</a>
-                Creating a user-friendly and highly intuitive web application for movie rentals by
-                developing the front-end interface using HTML.
-                Optimized data storage and retrieval processes in MySQL, improving query performance
-                and system efficiency for a catalog of 1,000+ movie records.
-            </li>
-        </ul>
-    </section>
-    <section id="Work" style="text-align: left;">
-        <h2>Professional Experience</h2>
-        <ul>
-            <dev style="display: flex; align-items: center; margin-bottom: 1rem;">
-                <li><strong>Software Developer Boot Camp Lecturer</strong>
-                    Designed and developed 4 Object-Oriented Programming (OOP)
-                    in-class to introduce students to advanced OOP concepts such as interfaces,
-                    libraries, classes, inheritance, and modular functions..</li>
-                <img src="images/lavner.jpg" alt="Lavner education"
-                    style="width: 350px; height: 200px; margin-left: 10px; margin-right: 1rem;">
+            <div class="card">
+                <img class="card-img" src="images/covid.png" alt="COVID-19 Analysis">
+                <div class="card-content">
+                    <p class="card-title">
+                        <a href="https://colab.research.google.com/drive/17-bibgxsKYLKMAeAUAqwADJ_72jPlJOU#scrollTo=hOsU_ij4QbRu" target="_blank">COVID-19 Data Analysis and Prediction</a>
+                    </p>
+                    <p class="card-body">
+                        Conducted an in-depth analysis of COVID-19 data from Germany, exploring
+                        death and recovery trends by state, county, gender, and age group.
+                    </p>
+                </div>
+            </div>
 
-            </dev>
+            <div class="card">
+                <div class="card-content">
+                    <p class="card-title">
+                        <a href="https://github.com/Fia-Hali/FAR-Movie-Rental" target="_blank">Online Movie Rental System</a>
+                    </p>
+                    <p class="card-body">
+                        Built a user-friendly web application for movie rentals with an HTML front-end interface.
+                        Optimized data storage and retrieval in MySQL, improving query performance for a
+                        catalog of 1,000+ movie records.
+                    </p>
+                </div>
+            </div>
 
-            <dev style="display: flex; align-items: center; margin-bottom: 1rem;">
-                <img src="images/baylor.jpg" alt="BCM Houston"
-                    style="width: 350px; height: 200px; margin-left: 10px; margin-right: 1rem;">
-
-                <li><strong>Data Scientist Intern</strong>
-                    Developed a custom Python-Pandas interface for automating data
-                    preprocessing within bacterial genomics research. The interface enhanced
-                    data transformation by sorting, extracting, and merging over 3,000 records across
-                    4 taxonomy levels, improving processing efficiency by 20%.</li>
-            </dev>
-        </ul>
+        </div>
     </section>
 
+    <hr class="divider">
+
+    <!-- ── Experience ── -->
+    <section id="work" class="section">
+        <p class="section-label">Career</p>
+        <h2 class="section-title">Professional Experience</h2>
+
+        <div class="card-grid">
+
+            <div class="card">
+                <img class="card-img" src="images/lavner.jpg" alt="Lavner Education">
+                <div class="card-content">
+                    <p class="card-title">Software Developer Boot Camp Lecturer — Lavner Education</p>
+                    <p class="card-body">
+                        Designed and developed 4 Object-Oriented Programming in-class modules to introduce
+                        students to advanced OOP concepts such as interfaces, libraries, classes, inheritance,
+                        and modular functions.
+                    </p>
+                </div>
+            </div>
+
+            <div class="card">
+                <img class="card-img" src="images/baylor.jpg" alt="Baylor College of Medicine">
+                <div class="card-content">
+                    <p class="card-title">Data Scientist Intern — Baylor College of Medicine</p>
+                    <p class="card-body">
+                        Developed a custom Python-Pandas interface for automating data preprocessing within
+                        bacterial genomics research. Enhanced data transformation by sorting, extracting, and
+                        merging over 3,000 records across 4 taxonomy levels, improving processing efficiency by 20%.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ── Footer ── -->
     <footer>
         <p>&copy; 2025 Hali Gulifeiya. All rights reserved.</p>
     </footer>
-</body>
 
+    <script>
+        const toggle = document.getElementById('themeToggle');
+        const html   = document.documentElement;
+
+        // Restore preference
+        const saved = localStorage.getItem('theme') || 'light';
+        html.setAttribute('data-theme', saved);
+        toggle.textContent = saved === 'dark' ? '☀ Light' : '☾ Dark';
+
+        toggle.addEventListener('click', () => {
+            const isDark = html.getAttribute('data-theme') === 'dark';
+            const next   = isDark ? 'light' : 'dark';
+            html.setAttribute('data-theme', next);
+            toggle.textContent = next === 'dark' ? '☀ Light' : '☾ Dark';
+            localStorage.setItem('theme', next);
+        });
+    </script>
+
+</body>
 </html>

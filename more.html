@@ -1,176 +1,389 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Personal Info</title>
+    <title>More — Hali Gulifeiya</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
     <style>
+        /* ── Design Tokens ── */
+        :root {
+            --bg:          #f7f5f2;
+            --surface:     #ffffff;
+            --surface-alt: #f0ede8;
+            --border:      #e2ddd8;
+            --text:        #2c2c2c;
+            --text-muted:  #6b6560;
+            --primary:     #3d7a72;
+            --primary-light: #d4ebe7;
+            --accent:      #c97d6e;
+            --accent-light: #f5e6e3;
+            --nav-bg:      rgba(247, 245, 242, 0.85);
+            --shadow:      0 2px 16px rgba(0,0,0,0.07);
+            --shadow-hover:0 6px 24px rgba(0,0,0,0.12);
+            --radius:      12px;
+            --radius-sm:   8px;
+            --transition:  0.2s ease;
+        }
+
+        [data-theme="dark"] {
+            --bg:          #141918;
+            --surface:     #1e2623;
+            --surface-alt: #262e2b;
+            --border:      #2e3834;
+            --text:        #e8e4df;
+            --text-muted:  #8a9490;
+            --primary:     #5aa89e;
+            --primary-light: #1e3330;
+            --accent:      #d4917f;
+            --accent-light: #2e201e;
+            --nav-bg:      rgba(20, 25, 24, 0.88);
+            --shadow:      0 2px 16px rgba(0,0,0,0.3);
+            --shadow-hover:0 6px 24px rgba(0,0,0,0.45);
+        }
+
+        /* ── Reset & Base ── */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+
         body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-            color: #454545;
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.65;
+            transition: background var(--transition), color var(--transition);
         }
 
-        header {
-            background: #d4ebe7;
-            color: #333;
-            padding: 1rem 0;
-            text-align: center;
-        }
+        a { color: var(--accent); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        img { display: block; max-width: 100%; }
 
-        main {
-            padding: 2rem;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
+        /* ── Nav ── */
         nav {
-            margin: 0;
-            padding: 1rem;
-            background: #c3d3dc;
-            text-align: center;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            background: var(--nav-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            padding: 0 2rem;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: background var(--transition);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
         }
 
         nav a {
-            color: #333;
-            text-decoration: none;
-            margin: 0 1rem;
+            color: var(--text-muted);
+            font-size: 0.875rem;
+            font-weight: 500;
+            padding: 0.4rem 0.75rem;
+            border-radius: var(--radius-sm);
+            transition: color var(--transition), background var(--transition);
         }
 
         nav a:hover {
-            text-decoration: underline;
+            color: var(--primary);
+            background: var(--primary-light);
+            text-decoration: none;
         }
 
-        section {
-            padding: 2rem;
-            max-width: 800px;
-            margin: auto;
+        nav a.active {
+            color: var(--primary);
+            background: var(--primary-light);
         }
+
+        .nav-icons {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-icons a {
+            display: flex;
+            align-items: center;
+            padding: 0.4rem;
+            border-radius: var(--radius-sm);
+        }
+
+        .nav-icons img {
+            width: 20px;
+            height: 20px;
+            transition: opacity var(--transition);
+        }
+
+        [data-theme="dark"] .nav-icons img { filter: invert(1) brightness(0.75); }
+
+        .theme-btn {
+            background: var(--surface-alt);
+            border: 1px solid var(--border);
+            color: var(--text-muted);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 500;
+            padding: 0.35rem 0.8rem;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all var(--transition);
+            white-space: nowrap;
+        }
+
+        .theme-btn:hover {
+            background: var(--primary-light);
+            color: var(--primary);
+            border-color: var(--primary);
+        }
+
+        /* ── Page Header ── */
+        .page-header {
+            padding: 6rem 2rem 3rem;
+            max-width: 900px;
+            margin: 0 auto;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .page-eyebrow {
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .page-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        .page-subtitle {
+            margin-top: 0.5rem;
+            font-size: 0.95rem;
+            color: var(--text-muted);
+        }
+
+        /* ── Sections ── */
+        .section {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .section-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 0.6rem;
+        }
+
+        .section-body {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 1.25rem;
+            max-width: 640px;
+            line-height: 1.7;
+        }
+
+        /* ── Photo Grid ── */
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 0.75rem;
+        }
+
+        .photo-grid img {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border);
+            transition: transform var(--transition), box-shadow var(--transition);
+        }
+
+        .photo-grid img:hover {
+            transform: scale(1.03);
+            box-shadow: var(--shadow-hover);
+        }
+
+        /* ── Side-by-side layout ── */
+        .side-card {
+            display: flex;
+            gap: 1.5rem;
+            align-items: flex-start;
+        }
+
+        .side-card img {
+            width: 220px;
+            height: 160px;
+            object-fit: cover;
+            border-radius: var(--radius-sm);
+            flex-shrink: 0;
+            border: 1px solid var(--border);
+        }
+
+        .side-card-body {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            line-height: 1.7;
+        }
+
+        /* ── Footer ── */
         footer {
             text-align: center;
-            padding: 1rem 0;
-            background: #c3d3dc;
-            color: #333;
+            padding: 2rem;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            border-top: 1px solid var(--border);
             margin-top: 2rem;
         }
 
-        body,
-        header,
-        main,
-        nav,
-        section,
-        footer {
-            font-family: "Times New Roman", Times, serif;
+        /* ── Responsive ── */
+        @media (max-width: 600px) {
+            nav { padding: 0 1rem; }
+            .nav-links a { padding: 0.4rem 0.5rem; font-size: 0.8rem; }
+            .side-card { flex-direction: column; }
+            .side-card img { width: 100%; height: 200px; }
         }
     </style>
 </head>
 
 <body>
-    <nav style="position: fixed; top: 0; width: 100%; z-index: 1000;">
-        <a href="index.html">Home</a>
-        <a href="index.html#about">About Me</a>
-        <a href="index.html#projects">Projects</a>
-        <a href="index.html#Work">Work</a>
-        <a href="more.html">More</a>
-        <a href="https://github.com/Fia-Hali" target="_blank">
-            <img src="images/githubicon1.png" alt="GitHub" style="width: 20px; height: 20px; vertical-align: middle;">
-        </a>
-        <a href="https://www.linkedin.com/in/hali001/" target="_blank">
-            <img src="images/linkedinicon1.png" alt="LinkedIn"
-                style="width: 20px; height: 20px; vertical-align: middle;">
-        </a>
+
+    <!-- ── Navigation ── -->
+    <nav>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="index.html#about">About</a>
+            <a href="index.html#projects">Projects</a>
+            <a href="index.html#work">Experience</a>
+            <a href="more.html" class="active">More</a>
+        </div>
+        <div style="display:flex; align-items:center; gap:0.75rem;">
+            <div class="nav-icons">
+                <a href="https://github.com/Fia-Hali" target="_blank" aria-label="GitHub">
+                    <img src="images/githubicon1.png" alt="GitHub">
+                </a>
+                <a href="https://www.linkedin.com/in/hali001/" target="_blank" aria-label="LinkedIn">
+                    <img src="images/linkedinicon1.png" alt="LinkedIn">
+                </a>
+            </div>
+            <button class="theme-btn" id="themeToggle" aria-label="Toggle theme">☀ Light</button>
+        </div>
     </nav>
 
-    <header style="margin-top: 30px;">
-        <h1>A little bit more of my life</h1>
-        <div>
-            <button id="themeToggle"
-                style="padding: 0.5rem 1rem; margin-right: 1rem; background-color: #474747; color: white; border: none; border-radius: 5px; cursor: pointer;">
-                Dark/light Mode
-            </button>
-        </div>
-        <script>
-            const themeToggle = document.getElementById('themeToggle');
-            themeToggle.addEventListener('click', () => {
-                document.body.classList.toggle('dark-mode');
-            });
+    <!-- ── Page Header ── -->
+    <div class="page-header">
+        <p class="page-eyebrow">Beyond the Resume</p>
+        <h1 class="page-title">A little bit more of my life</h1>
+        <p class="page-subtitle">Art, language, boba, and two very judgmental pets.</p>
+    </div>
 
-            // Add dark mode styles
-            const style = document.createElement('style');
-            style.textContent = `
-            .dark-mode {
-            background-color: #333;
-            color: #f4f4f4;
-            }
-            .dark-mode nav {
-            background: #444;
-            }
-            .dark-mode nav a {
-            color: #bbb;
-            }
-            .dark-mode header {
-            background: #555;
-            color: #f4f4f4;
-            }
-            .dark-mode footer {
-            background: #222;
-            color: #bbb;
-            }
-            `;
-            document.head.appendChild(style);
-        </script>
-    </header>
-
-
-    <section style="margin: 0 auto; max-width: 600px; text-align: left; padding-bottom: 20px;">
-        <h2>Artist</h2>
-        <p>I paint sometimes:) I'm a self-taught artist and I love using art as a way to express ideas, 
-            emotions, and moments that matter to me.</p>
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px;">
-            <img src="images/art1.jpeg" alt="tree" style="width: 100%; height: auto; border-radius: 5px;">
-            <img src="images/art2.jpeg" alt="oreo" style="width: 100%; height: auto; border-radius: 5px;">
-            <img src="images/art3.jpeg" alt="flower" style="width: 100%; height: auto; border-radius: 5px;">
+    <!-- ── Artist ── -->
+    <section class="section">
+        <p class="section-label">Creative</p>
+        <h2 class="section-title">Artist</h2>
+        <p class="section-body">I paint sometimes :) I'm a self-taught artist and I love using art as a way
+            to express ideas, emotions, and moments that matter to me.</p>
+        <div class="photo-grid">
+            <img src="images/art1.jpeg" alt="Painting — tree">
+            <img src="images/art2.jpeg" alt="Painting — oreo">
+            <img src="images/art3.jpeg" alt="Painting — flower">
         </div>
     </section>
 
-    <section style="margin: 0 auto; max-width: 600px; text-align: left; ">
-        <h2>Professional Interpreter</h2>
-        <div style="display: flex; align-items: center; margin-bottom: 1rem;">
-            <p>I had experience as a professional Mandarin interpreter at LanguageLine Solutions, I deliver clear, accurate, and
-                culturally sensitive communication across different industries including healthcare, legal, and technical
-                services. <br><br>This requires quick thinking, confidentiality, and a deep understanding of both language and
-                culture.</p> 
-            <img src="images/lls1.jpg" alt="language line solution" style="width: 250px; height: 200px; margin-left: 10px;">
-    </section>
-
-    <section style="margin: 0 auto; max-width: 600px; text-align: left; ">
-        <h2>Boba tea barista</h2>
-        <div style="display: flex; align-items: center; margin-bottom: 1rem;">
-            <img src="images/gongcha.jpg" alt="language line solution" style="width: 250px; height: 200px; margin-left: 10px; margin-right: 1rem;">
-
-            <p>I worked as a bobatea barista at Gong Cha, where I made a lot of good friendship while learning all kinds of bubble tea drinks and recipes. 
-                I loved getting to know regulars and creating a fun, friendly vibe behind the counter. It was all
-                about great customer service, teamwork, and making sure everyone left with a smile (and their favorite drink).</p>
-    </section>
-
-    <section style="margin: 0 auto; max-width: 600px; text-align: left;">
-        <h2>My cat and dog</h2>
-        <h3>Dog: Saldat (M) Cat: Oreo (F)</h3>
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px;">
-            <img src="images/saldathead.jpeg" alt="saldat" style="width: 100%; height: auto; border-radius: 5px;">
-            <img src="images/huntingoreo.jpeg" alt="Oreo playing" style="width: 100%; height: auto; border-radius: 5px;">
-            <img src="images/madoreo.jpeg" alt="Oreo mad" style="width: 100%; height: auto; border-radius: 5px;">
-            <img src="images/saldat.jpeg" alt="saldat full" style="width: 100%; height: auto; border-radius: 5px;">
-            <img src="images/judgingoreo.jpeg" alt="saldat full" style="width: 100%; height: auto; border-radius: 5px;">
+    <!-- ── Interpreter ── -->
+    <section class="section">
+        <p class="section-label">Language</p>
+        <h2 class="section-title">Professional Interpreter</h2>
+        <div class="side-card">
+            <img src="images/lls1.jpg" alt="LanguageLine Solutions">
+            <p class="side-card-body">
+                I had experience as a professional Mandarin interpreter at LanguageLine Solutions,
+                delivering clear, accurate, and culturally sensitive communication across industries
+                including healthcare, legal, and technical services.
+                <br><br>
+                This required quick thinking, confidentiality, and a deep understanding of both
+                language and culture.
+            </p>
         </div>
     </section>
 
+    <!-- ── Boba ── -->
+    <section class="section">
+        <p class="section-label">Service</p>
+        <h2 class="section-title">Boba Tea Barista</h2>
+        <div class="side-card">
+            <p class="side-card-body">
+                I worked as a boba tea barista at Gong Cha, where I made a lot of good friendships
+                while learning all kinds of bubble tea drinks and recipes. I loved getting to know
+                regulars and creating a fun, friendly vibe behind the counter. It was all about great
+                customer service, teamwork, and making sure everyone left with a smile
+                (and their favorite drink).
+            </p>
+            <img src="images/gongcha.jpg" alt="Gong Cha">
+        </div>
+    </section>
+
+    <!-- ── Pets ── -->
+    <section class="section">
+        <p class="section-label">Family</p>
+        <h2 class="section-title">My Cat &amp; Dog</h2>
+        <p class="section-body">Saldat (dog, M) &amp; Oreo (cat, F) — professional chaos agents.</p>
+        <div class="photo-grid">
+            <img src="images/saldathead.jpeg" alt="Saldat">
+            <img src="images/huntingoreo.jpeg" alt="Oreo playing">
+            <img src="images/madoreo.jpeg" alt="Oreo mad">
+            <img src="images/saldat.jpeg" alt="Saldat full">
+            <img src="images/judgingoreo.jpeg" alt="Oreo judging">
+        </div>
+    </section>
+
+    <!-- ── Footer ── -->
     <footer>
         <p>&copy; 2025 Hali Gulifeiya. All rights reserved.</p>
     </footer>
-</body>
 
+    <script>
+        const toggle = document.getElementById('themeToggle');
+        const html   = document.documentElement;
+
+        const saved = localStorage.getItem('theme') || 'light';
+        html.setAttribute('data-theme', saved);
+        toggle.textContent = saved === 'dark' ? '☀ Light' : '☾ Dark';
+
+        toggle.addEventListener('click', () => {
+            const isDark = html.getAttribute('data-theme') === 'dark';
+            const next   = isDark ? 'light' : 'dark';
+            html.setAttribute('data-theme', next);
+            toggle.textContent = next === 'dark' ? '☀ Light' : '☾ Dark';
+            localStorage.setItem('theme', next);
+        });
+    </script>
+
+</body>
 </html>
